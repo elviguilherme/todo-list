@@ -1,0 +1,291 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #eef1f5;
+  display: flex;
+  justify-content: center;
+  padding: 30px 15px;
+}
+
+.container {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 480px;
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.icone-titulo {
+  flex-shrink: 0;
+  color: #3f8efc;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.campos-tarefa {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+}
+
+.formulario input,
+.formulario select {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  height: 38px;
+}
+
+#inputDescricao {
+  flex: 1 1 100%;
+}
+
+#selectPrioridade {
+  flex: 1;
+  background-color: #fff;
+}
+
+#btnAdicionar {
+  width: 44px;
+  height: 44px;
+  background-color: #3f8efc;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#btnAdicionar:hover {
+  background-color: #2c6fd1;
+}
+
+#areaErro {
+  margin-bottom: 10px;
+}
+
+.mensagem-erro {
+  background-color: #ffe0e0;
+  color: #b30000;
+  border: 1px solid #ff9999;
+  padding: 8px 10px;
+  border-radius: 5px;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+#listaTarefas {
+  list-style: none;
+}
+
+.tarefa {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #f9f9f9;
+  border-left: 6px solid #999;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 8px;
+}
+
+.prioridade-alta {
+  border-left-color: #e63946;
+}
+
+.prioridade-media {
+  border-left-color: #f4a261;
+}
+
+.prioridade-baixa {
+  border-left-color: #2a9d8f;
+}
+
+.tarefa-texto {
+  flex: 1;
+  font-size: 15px;
+}
+
+.etiqueta {
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.etiqueta.alta {
+  background-color: #e63946;
+}
+
+.etiqueta.media {
+  background-color: #f4a261;
+}
+
+.etiqueta.baixa {
+  background-color: #2a9d8f;
+}
+
+.concluida .tarefa-texto {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.btnExcluir {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #999;
+}
+
+.btnExcluir:hover {
+  color: #e63946;
+}
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.modal-overlay.escondido {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.modal-caixa {
+  background-color: #ffffff;
+  width: 90%;
+  max-width: 340px;
+  border-radius: 8px;
+  padding: 25px 20px;
+  text-align: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transform: scale(0.95);
+  transition: transform 0.2s ease;
+}
+
+.modal-overlay.escondido .modal-caixa {
+  transform: scale(0.9);
+}
+
+.modal-icone {
+  display: flex;
+  justify-content: center;
+  color: #e63946;
+  margin-bottom: 8px;
+}
+
+.modal-caixa h2 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.modal-caixa p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.modal-botoes {
+  display: flex;
+  gap: 10px;
+}
+
+.modal-btn {
+  flex: 1;
+  padding: 9px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.modal-btn.cancelar {
+  background-color: #eee;
+  color: #444;
+}
+
+.modal-btn.cancelar:hover {
+  background-color: #ddd;
+}
+
+.modal-btn.confirmar {
+  background-color: #e63946;
+  color: #fff;
+}
+
+.modal-btn.confirmar:hover {
+  background-color: #c72c39;
+}
+
+.tarefa.saindo {
+  animation: encolherESumir 0.35s ease forwards;
+}
+
+@keyframes encolherESumir {
+  from {
+    transform: scale(1);
+    opacity: 1;
+    max-height: 60px;
+    margin-bottom: 8px;
+    padding: 10px;
+  }
+  to {
+    transform: scale(0.8);
+    opacity: 0;
+    max-height: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+  }
+}
